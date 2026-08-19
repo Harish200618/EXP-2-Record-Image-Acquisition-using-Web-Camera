@@ -43,10 +43,10 @@ Resize the frame and rotate it using OpenCV functions, then display the processe
 ## 💻 Program
 
 ### Developed By:
-**Name:** ____________________________  
+**Name:** Harish S
 
 ### Register No:
-____________________________  
+    212224240052
 
 ---
 
@@ -54,17 +54,97 @@ ____________________________
 
 ### i) Write the frame as JPG image
 Captured image is saved as `captured_image.jpg`
+```
+import cv2
+import matplotlib.pyplot as plt
+from IPython.display import clear_output
+import time
+cap = cv2.VideoCapture(0)
+ret, frame = cap.read()
+if ret:
+    cv2.imwrite("captured_frame.jpg", frame)
+cap.release()
+captured_image = cv2.imread('captured_frame.jpg')
+plt.imshow(captured_image[:,:,::-1])
+plt.title('Captured Frame')
+plt.axis('off')
+plt.show()
+```
+
+<img width="512" height="389" alt="download" src="https://github.com/user-attachments/assets/a7bd9759-0c88-46fc-986e-6cfb07be69dc" />
+
+
 
 ### ii) Display the video
 Live webcam video is displayed
+```
+cap = cv2.VideoCapture(0)
+
+for i in range(50):
+    ret, frame = cap.read()
+    if not ret:
+        break
+    frame_rgb = cv2.cvtColor(frame, cv2.COLOR_BGR2RGB)
+    clear_output(wait=True)
+    plt.imshow(frame_rgb)
+    plt.axis('off')
+    plt.show()
+    time.sleep(0.05)
+
+cap.release()
+```
+
+<img width="380" height="569" alt="image" src="https://github.com/user-attachments/assets/64d04c8b-88de-49fc-9e87-c871c53b9f9d" />
+
+
 
 ### iii) Display the video by resizing the window
 Video is shown in resized resolution (640 × 480)
+```
+cap = cv2.VideoCapture(0)
+
+for i in range(50):
+    ret, frame = cap.read()
+    if not ret:
+        break
+    resized_frame = cv2.resize(frame, (100, 150))  # Resize to 320x240
+    frame_rgb = cv2.cvtColor(resized_frame, cv2.COLOR_BGR2RGB)
+    clear_output(wait=True)
+    plt.imshow(frame_rgb)
+    plt.axis('off')
+    plt.show()
+    time.sleep(0.05)
+
+cap.release()
+```
+
+
 
 ### iv) Rotate and display the video
 Video is displayed after rotation (90° clockwise)
+```
+cap = cv2.VideoCapture(0)
+
+for i in range(50):
+    ret, frame = cap.read()
+    if not ret:
+        break
+    rotated_frame = cv2.rotate(frame, cv2.ROTATE_90_CLOCKWISE)
+    frame_rgb = cv2.cvtColor(rotated_frame, cv2.COLOR_BGR2RGB)
+    clear_output(wait=True)
+    plt.imshow(frame_rgb)
+    plt.axis('off')
+    plt.show()
+    time.sleep(0.05)
+
+cap.release()
+```
+
+<img width="430" height="577" alt="image" src="https://github.com/user-attachments/assets/db25759c-f54e-4679-8cdd-ab2a1e9f3347" />
+
 
 ---
+
 
 ## Result
 
